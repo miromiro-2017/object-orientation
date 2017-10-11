@@ -8,13 +8,13 @@ class Rectangle {
     return this.width * this.height
   }
 
-  static calcArea (width, height) {
-    return width * height
+  toString () {
+    return 'I am a string'
   }
 }
 
 class Square extends Rectangle {
-  constructor (color, size) {
+  constructor (size, color) {
     super(size, size)
     this.color = color
   }
@@ -22,22 +22,13 @@ class Square extends Rectangle {
 
 function getSquares (size, colors) {
   return colors.map(color => {
-    return new Square(color, size)
+    return new Square(size, color)
   })
 }
 
-// const squares = getSquares(10, ['red', 'green', 'blue'])
-// console.log(squares)
+const colors = ['red', 'blue', 'yellow']
+const squares = getSquares(32, colors)
 
-// method (object function)
-const rect = new Rectangle(3, 4)
-const area = rect.getArea()
-console.log(area)
-// static function
-const calcdArea = Rectangle.calcArea(10, 20)
-console.log(calcdArea)
+console.log(squares[0].toString())
 
-const to = typeof rect
-const tc = typeof Rectangle
-console.log('Object', to)
-console.log('Class', tc)
+console.log(squares)

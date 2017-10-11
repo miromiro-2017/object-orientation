@@ -1,37 +1,18 @@
 const obj = {
-  val: 4,
-  timesTwo: function (num) {
-    this.val = num
-    return this.val * 2
-  },
-  timesThree: function () {
-    return this.val * 3
-  }
+  val: 4
 }
 
-// connected
-const y = obj.timesThree()
-// disconnected
-const newTimesThree = obj.timesThree
-const x = newTimesThree()
-
-console.log('connected', y)
-console.log('disconnected', x)
-
-function func (num) {
-  return this.timesTwo(num)
+function coolFunc (op1, op2) {
+  return this.val + op1 + op2
 }
 
-// const result = obj.timesTwo()
-// console.log(result)
+const v1 = coolFunc.call(obj, 19, 30)
+// call does this: obj.coolFunc(19, 30)
+const v2 = coolFunc.apply(obj, [19, 30])
+// apply does this: obj.coolFunc(19, 30)
 
-// const r = func.apply(obj, [5])
-// console.log(r)
+const callCoolFunc = coolFunc.bind(obj, 19)
+const v3 = callCoolFunc(30)
+// callCoolFunc does this: obj.coolFunc(19, 30)
 
-// const newFunc = func.bind(obj, 4)
-// const newResult = newFunc()
-// console.log(newResult)
-
-const newFunc = func.bind(obj)
-const newResult = newFunc(4)
-// console.log(newResult)
+console.log(v1, v2, v3)
